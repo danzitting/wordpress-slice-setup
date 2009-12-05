@@ -1,0 +1,22 @@
+#
+# Settings for php-cgi in external FASTCGI Mode
+#
+
+# Should php-fastcgi run automatically on startup? (default: no)
+
+START=yes
+
+# Which user runs PHP? (default: www-data)
+
+EXEC_AS_USER=www-data
+
+# Host and TCP port for FASTCGI-Listener (default: localhost:9000)
+
+FCGI_HOST=localhost
+FCGI_PORT=9000
+
+# Environment variables, which are processed by PHP
+
+PHP_FCGI_CHILDREN=5
+PHP_FCGI_MAX_REQUESTS=1000
+

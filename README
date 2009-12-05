@@ -1,0 +1,72 @@
+ABOUT
+============================
+This script is designed to automate the deployment of Wordpress sites on a fresh server installation using an Nginx stack. This script (vps-setup.sh) sets up and configures the server and deployment stack and installs the initial Wordpress site on this server. The second script is optional as it (wordpress-site-setup.sh) installs Wordpress and the Nginx configuration for an additional Wordpress site/domain you would like to host on the server. The Wordpress install script can be run multiple times on a given server if you would like to host multiple Wordpress sites on the same server.
+
+
+VPS-SETUP.SH OVERVIEW
+============================
+This script installs and configures the server and Nginx stack and creates and installs the initial web site on nginx. All packages are installed through aptitude.
+
+The script disables SSH root login and sets up a sudo user and also changes the SSH port. All these are for server security.
+
+At the top of the script, you can see the variable that are to be set prior to running the script. All variable should have value, otherwise the script will not run.
+
+
+SLICE SETUP
+============================
+Before you run the script, login into slicemanager at manage.slicehost.com, click "DNS" tab and "Reverse DNS". Replace record with: server.domain.com (REPLACE server.domain.com with the correct host name).
+
+
+SERVER SETUP/CONFIGURATION
+============================
+Upload vps-setup.zip to /root.
+Login to the VPS as root and unzip the file.
+
+unzip vps-setup.zip
+cd vps-setup
+Now, run the setup.sh script.
+
+sh setup.sh
+
+During the set up, a dialog will ask you for entering a password for MySQL root user. Enter a password.
+
+After installation, MySQL is secured. For that the MySQL root password is asked. Enter the MySQL password you created in the above step.
+
+Enter current password for root (enter for none): 
+
+Then following yes/no questions are asked. Answer them as follows.
+
+Change the root password? [Y/n] n
+Remove anonymous users? [Y/n] y
+Disallow root login remotely? [Y/n] y
+Remove test database and access to it? [Y/n] y
+Reload privilege tables now? [Y/n] y
+
+During the installation of Postfix mail server, select "Internet Site", and then for "System mail name:" -> "server.domain.com" (REPLACE server.domain.com with the correct host name).
+
+
+Server Setup Completion
+============================
+Once the script has completed, the root user can no longer SSH into the server. You need to use login for the sudo_user you setup in the script variables.
+
+Host: <whatever you setup in script variables>
+User: <whatever you setup in script variables>
+Password: <whatever you setup in script variables>
+SSH Port: <whatever you setup in script variables>
+
+MySQL root password: <whatever you entered during script execution for mysql root password>
+
+
+Wordpress Installation
+============================
+The site domain you setup in the script variables is created on Nginx by the script, however the site is empty. You need to upload Wordpress files to the web document root /home/public_html/itickmark.com/public/ and set up the database for the site.
+
+
+License
+============================
+Copyright (c) 2009 by iTickmark LLC 
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+

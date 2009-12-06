@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #-- User Defined Variables --#
-hostname=    #Your hostname (e.g. server.example.com)
-sudo_user=    #Your username
-sudo_user_passwd=     #your password
-root_passwd=    #Your new root password
+hostname=''    #Your hostname (e.g. server.example.com)
+sudo_user=''    #Your username
+sudo_user_passwd=''     #your password
+root_passwd=''    #Your new root password
 ssh_port='22'   #Your SSH port if you wish to change it from the default
 #-- UDV End --#
 
@@ -144,12 +144,14 @@ config_web()
 }
 
 copy_site_setup_files()
-}
-	mkdir /home/$sudo_user/setup
-	cp /root/wordpress-setup.sh /home/$sudo_user/setup/wordpress-setup.sh
-	mkdir /home/$sudo_user/setup/files
-	cp /root/files/mydomain.com /home/$sudo_user/setup/files/mydomain.com	
-	mkdir /home/$sudo_user/setup/tmp
+{
+  mkdir /home/$sudo_user/setup
+  cp wordpress-setup.sh /home/$sudo_user/setup/wordpress-setup.sh
+  mkdir /home/$sudo_user/setup/files
+  cp files/mydomain.com /home/$sudo_user/setup/files/mydomain.com	
+  mkdir /home/$sudo_user/setup/tmp
+  chown -R dan /home/$sudo_user
+  chmod -R +x /home/$sudo_user
 }
 
 cleanup()
@@ -198,6 +200,9 @@ install_pkg
 
 # configure nginx web server
 config_web
+
+# copy over site setup files
+copy_site_setup_files
 
 # clean up tmp
 cleanup

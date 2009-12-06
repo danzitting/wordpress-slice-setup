@@ -1,4 +1,6 @@
-site_domain=   #Your wordpress domain (e.g. example.com)
+site_domain=''   #Your wordpress domain (e.g. example.com)
+database_name=''   #Your wordpress database name
+
 
 setup_site()
 {
@@ -17,6 +19,7 @@ wordpress_setup()
   wget http://wordpress.org/latest.tar.gz
   tar -xzvf latest.tar.gz
   mv wordpress/* /home/public_html/$site_domain/public
+  
 }
 
 check_vars()

@@ -1,68 +1,62 @@
 ABOUT
 ============================
-This script is designed to automate the deployment of Wordpress sites on a fresh server installation using an Nginx stack. This script (vps-setup.sh) sets up and configures the server and deployment stack and installs the initial Wordpress site on this server. The second script is optional as it (wordpress-site-setup.sh) installs Wordpress and the Nginx configuration for an additional Wordpress site/domain you would like to host on the server. The Wordpress install script can be run multiple times on a given server if you would like to host multiple Wordpress sites on the same server.
+This set of script is designed to automate the deployment of Wordpress sites on a fresh server installation using an Nginx stack. The first script (vps-setup.sh) sets up and configures the server and deployment stack. The second (wordpress-setup.sh) installs a Wordpress site on this server. The Wordpress install script can be run multiple times on a given server if you would like to host multiple Wordpress sites on the same server.
 
 
-VPS-SETUP.SH OVERVIEW
+SERVER-SETUP.SH OVERVIEW
 ============================
-This script installs and configures the server and Nginx stack and creates and installs the initial web site on nginx. All packages are installed through aptitude.
+This script requires a fresh Ubuntu server Slice. It installs and configures the required OS packages and the MySQL/Nginx/PHP/Postfix deployment stack for Wordpress. All packages are installed through aptitude for future upgrade ease.
 
-The script disables SSH root login and sets up a sudo user and also changes the SSH port. All these are for server security.
+NOTE: The script disables SSH root login, sets up a sudo user, and changes the SSH port for server security. At the top of the script, you can see the variable that are to be set prior to running the script. All variable should have value, otherwise the script will not run.
 
-At the top of the script, you can see the variable that are to be set prior to running the script. All variable should have value, otherwise the script will not run.
+
+WORDPRESS-SETUP.SH OVERVIEW
+============================
+TO BE COMPLETED
 
 
 SLICE SETUP
 ============================
-Before you run the script, login into slicemanager at manage.slicehost.com, click "DNS" tab and "Reverse DNS". Replace record with: server.domain.com (REPLACE server.domain.com with the correct host name).
+Before you run the script, login into Slicemanager, click "DNS" tab and "Reverse DNS". Replace the server's record with: server.domain.com (REPLACE server.domain.com with the correct host name). The script has been tested on a 1 GB slice running Ubuntu Karmic and seems to be performing very well running 10 relatively low traffic Wordpress sites. It should work fine on any Ubuntu Slice.
 
 
 SERVER SETUP/CONFIGURATION
 ============================
-Upload vps-setup.zip to /root.
-Login to the VPS as root and unzip the file.
-
-unzip vps-setup.zip
-cd vps-setup
-Now, run the setup.sh script.
-
-sh setup.sh
-
-During the set up, a dialog will ask you for entering a password for MySQL root user. Enter a password.
-
-After installation, MySQL is secured. For that the MySQL root password is asked. Enter the MySQL password you created in the above step.
-
-Enter current password for root (enter for none): 
-
-Then following yes/no questions are asked. Answer them as follows.
-
-Change the root password? [Y/n] n
-Remove anonymous users? [Y/n] y
-Disallow root login remotely? [Y/n] y
-Remove test database and access to it? [Y/n] y
-Reload privilege tables now? [Y/n] y
-
-During the installation of Postfix mail server, select "Internet Site", and then for "System mail name:" -> "server.domain.com" (REPLACE server.domain.com with the correct host name).
+1. Download the script files from the GitHub repo as a tar file. 
+2. Upload the tar file to /root. 
+3. Login to the server as root and unzip the file: 
+	- tar -xzvf wordpress-slice-setup.tar.gz
+4. Enter setup directory:
+	- cd worpress-slice-setup
+5. Edit script variables for your configuration: 
+	- nano server-setup.sh
+	- Edit the first three lines to match your needs
+	- ctrl + o to save changes, ctrl + x to exit
+5. sh server-setup.sh
+6. At the prompts, do the following:
+	- Please provide the prefix of Imagemagick installation [autodetect] : {PRESS ENTER}
+	- MySQL root password dialog: {ENTER A PASSWORD}
+	- Enter current password for root (enter for none): {ENTER THE MYSQL PASSWORD YOU JUST SETUP}
+	- Change the root password? [Y/n]: n
+	- Remove anonymous users? [Y/n]: y
+	- Disallow root login remotely? [Y/n]: y
+	- Remove test database and access to it? [Y/n]: y
+	- Reload privilege tables now? [Y/n]: y
+	- Postfix setup dialog, first prompt: select "Internet Site"
+	- Postfix setup dialog, second prompt: {REPLACE LOCALHOST WITH SERVER HOSTNAME}
 
 
-Server Setup Completion
+SERVER SETUP COMPLETION
 ============================
-Once the script has completed, the root user can no longer SSH into the server. You need to use login for the sudo_user you setup in the script variables.
-
-Host: <whatever you setup in script variables>
-User: <whatever you setup in script variables>
-Password: <whatever you setup in script variables>
-SSH Port: <whatever you setup in script variables>
-
-MySQL root password: <whatever you entered during script execution for mysql root password>
+DO NOT LOG OUT of your root session. Once the script has completed, the root user can no longer SSH into the server. You need to use the login for the sudo_user you setup in the script variables. So, start a new SSH session and try to login using the account of the sudo_user. Once you have confirmed you can login successfully, you can close the root session.
 
 
-Wordpress Installation
+WORDPRESS INSTALLATION
 ============================
-The site domain you setup in the script variables is created on Nginx by the script, however the site is empty. You need to upload Wordpress files to the web document root /home/public_html/itickmark.com/public/ and set up the database for the site.
+TO BE COMPLETED
 
 
-License
+LICENSE
 ============================
 Copyright (c) 2009 by iTickmark LLC 
 

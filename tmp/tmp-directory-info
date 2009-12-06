@@ -1,0 +1,1 @@
+This directory is used in the install process. Just ignore it, it is automatically cleaned out by the script.

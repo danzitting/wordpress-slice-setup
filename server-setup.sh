@@ -136,6 +136,7 @@ config_web()
   mkdir /home/public_html
   groupadd webmasters
   usermod -G webmasters $sudo_user
+  usermod -G webmasters www-data
   chown -R $sudo_user.webmasters /home/public_html
   chmod -R g+w /home/public_html
   find /home/public_html -type d -exec chmod g+s {} \;
@@ -145,18 +146,13 @@ config_web()
 
 copy_site_setup_files()
 {
-  mkdir /home/$sudo_user/setup
-  cp wordpress-setup.sh /home/$sudo_user/setup/wordpress-setup.sh
-  mkdir /home/$sudo_user/setup/files
-  cp files/mydomain.com /home/$sudo_user/setup/files/mydomain.com	
-  mkdir /home/$sudo_user/setup/tmp
+  mkdir /home/$sudo_user/wp-setup
+  cp wordpress-setup.sh /home/$sudo_user/wp-setup/wordpress-setup.sh
+  mkdir /home/$sudo_user/wp-setup/files
+  cp files/mydomain.com /home/$sudo_user/wp-setup/files/mydomain.com	
+  mkdir /home/$sudo_user/wp-setup/tmp
   chown -R dan /home/$sudo_user
   chmod -R +x /home/$sudo_user
-}
-
-cleanup()
-{
-  rm -rf tmp/*
 }
 
 check_vars()
@@ -167,6 +163,11 @@ check_vars()
   else
     echo "Value of variables cannot be empty."
   fi
+}
+
+cleanup()
+{
+  rm -rf tmp/*
 }
 
 #-- Function calls and flow of execution --#

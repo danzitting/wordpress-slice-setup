@@ -12,7 +12,7 @@ NOTE: The script disables SSH root login, sets up a sudo user, and changes the S
 
 WORDPRESS-SETUP.SH OVERVIEW
 ============================
-TO BE COMPLETED
+This script is meant to be run after completing the server-setup.sh script. It completely sets up a new Wordpress installation on the server. It first creates the Nginx vhost for the site, then adds a MySQL database for the site, and finally downloads and unpacks the latest version of Wordpress. From there, you can simply visit the site and use the Wordpress web interface to finish the install.
 
 
 SLICE SETUP
@@ -53,7 +53,16 @@ DO NOT LOG OUT of your root session. Once the script has completed, the root use
 
 WORDPRESS INSTALLATION
 ============================
-TO BE COMPLETED
+Log into the server as the sudo_user you setup in the server setup script. You will see a wp-setup folder has been added in your home directory. Go to that folder and then simply modify the script variables, su to root, and run the script.
+	- cd wp-setup
+	- nano wordpress-setup.sh (edit the variables at teh top of the script to meet your needs, then save and exit)
+	- sudo su (enter your password)
+	- sh wordpress-setup.sh
+
+	
+WORDPRESS SETUP COMPLETION
+============================
+To finish the installation, just visit the domain you just setup and follow the web-based prompts. Finished! You are running a high-performance Wordpress site.
 
 
 LICENSE

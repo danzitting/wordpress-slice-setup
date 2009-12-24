@@ -1,8 +1,8 @@
 server {
 
             listen   80;
-            server_name  mydomain.com;
-            rewrite ^/(.*) http://www.mydomain.com/$1 permanent;
+            server_name  www.mydomain.com;
+            rewrite ^/(.*) http://mydomain.com/$1 permanent;
 
            }
 
@@ -10,7 +10,7 @@ server {
 server {
 
             listen   80;
-            server_name www.mydomain.com;
+            server_name mydomain.com;
 
             access_log /home/public_html/mydomain.com/log/access.log;
             error_log /home/public_html/mydomain.com/log/error.log;

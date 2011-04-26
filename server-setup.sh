@@ -104,7 +104,7 @@ install_pkg()
   aptitude update
   aptitude -y safe-upgrade
   aptitude -y full-upgrade
-  aptitude -y install screen build-essential php5-common php5-dev php5-mysql php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-cgi php5-mcrypt php5-curl php5-gd php5-memcache php5-mhash php5-pspell php5-snmp php5-sqlite libmagick9-dev php5-cli
+  aptitude -y install screen build-essential php5-common php5-dev php5-mysql php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-cgi php5-mcrypt php5-curl php5-gd php5-memcache php5-mhash php5-pspell php5-snmp php5-sqlite libmagick9-dev php5-cli 
   aptitude -y install make php-pear
   echo "Installing ImageMagick PHP module. Just press <ENTER> at prompt.\n"
   sleep 1
@@ -113,7 +113,7 @@ install_pkg()
   sed -i -r 's/\s*memory_limit\s+=\s+16M/memory_limit = 48M/g' /etc/php5/cgi/php.ini
   aptitude -y install mysql-server mysql-client libmysqlclient15-dev
   mysql_secure_installation
-  aptitude -y install subversion git-core
+  aptitude -y install subversion git-core vsftpd
   echo "Installing Postfix mail server\n"
   echo "Select 'Internet Site', and then for 'System mail name:' -> $hostname\n".
   sleep 2
@@ -151,7 +151,7 @@ copy_site_setup_files()
   mkdir /home/$sudo_user/wp-setup/files
   cp files/mydomain.com /home/$sudo_user/wp-setup/files/mydomain.com	
   mkdir /home/$sudo_user/wp-setup/tmp
-  chown -R dan /home/$sudo_user
+  chown -R $sudo_user /home/$sudo_user
   chmod -R +x /home/$sudo_user
 }
 

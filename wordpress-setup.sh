@@ -80,7 +80,8 @@ setup_wp()
     echo "flush privileges;"
   } > tmp/sql.$$
   mysql -u $mysql_root_user -p$mysql_root_passwd $site_db < tmp/sql.$$
-  chown -R $www-data.webmasters /home/public_html
+  chown -R www-data.webmasters /home/public_html/$site
+  chmod -R g+w /home/public_html/$site
   echo "done."
 }
 

@@ -1,3 +1,6 @@
+UPDATE (4/26/2011): Have started getting a number of questions from folks about if these scripts are still fresh (eg. still work). They still work great on Slicehost using latest Ubuntu and Ubuntu LTS. There are many additional features that would be great to add, however we have not done so simply as a result of relying on Wordpress less. Pull requests welcome though.
+
+
 ABOUT
 ============================
 This set of script is designed to automate the deployment of Wordpress sites on a fresh server installation using an Nginx stack. The first script (vps-setup.sh) sets up and configures the server and deployment stack. The second (wordpress-setup.sh) installs a Wordpress site on this server. The Wordpress install script can be run multiple times on a given server if you would like to host multiple Wordpress sites on the same server.
@@ -67,9 +70,9 @@ To finish the installation, just visit the domain you just setup and follow the 
 
 LICENSE
 ============================
-Copyright (c) 2009 by iTickmark LLC 
+Copyright (c) 2011 by Workpapers.com LLC 
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the MIT License.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
